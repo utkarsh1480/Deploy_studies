@@ -1,5 +1,6 @@
 import { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
+import { baseURL } from '../context/AuthContext';
 import { Lock, ArrowRight, Clock, Tag } from 'lucide-react';
 
 const HomePage = () => {
@@ -17,8 +18,8 @@ const HomePage = () => {
         setLoading(true);
         try {
             const url = category === 'all'
-                ? 'http://localhost:5000/api/posts'
-                : `http://localhost:5000/api/posts?category=${category}`;
+                ? `${baseURL}/api/posts`
+                : `${baseURL}/api/posts?category=${category}`;
 
             const res = await fetch(url);
             const data = await res.json();

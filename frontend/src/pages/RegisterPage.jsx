@@ -1,4 +1,5 @@
 import { useState } from 'react';
+import { baseURL } from '../context/AuthContext';
 import { useNavigate, Link } from 'react-router-dom';
 
 const RegisterPage = () => {
@@ -11,7 +12,7 @@ const RegisterPage = () => {
     const handleSubmit = async (e) => {
         e.preventDefault();
         try {
-            const res = await fetch('http://localhost:5000/api/auth/register', {
+            const res = await fetch(`${baseURL}/api/auth/register`, {
                 method: 'POST',
                 headers: { 'Content-Type': 'application/json' },
                 body: JSON.stringify({ username, email, password })

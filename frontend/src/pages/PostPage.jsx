@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react';
 import { useParams, Link } from 'react-router-dom';
-import { useAuth } from '../context/AuthContext';
+import { useAuth, baseURL } from '../context/AuthContext';
 import { Lock, ThumbsUp, MessageSquare, Send } from 'lucide-react';
 
 const PostPage = () => {
@@ -17,7 +17,7 @@ const PostPage = () => {
 
     const fetchPost = async () => {
         try {
-            const res = await fetch(`http://localhost:5000/api/posts/${id}`);
+            const res = await fetch(`${baseURL}/api/posts/${id}`);
             const data = await res.json();
             setPost(data);
         } catch (err) {
@@ -29,7 +29,7 @@ const PostPage = () => {
     const handleLike = async () => {
         if (!user) return alert('Please login to like posts');
         try {
-            await fetch(`http://localhost:5000/api/posts/like/${id}`, {
+            await fetch(`${baseURL}/api/posts/like/${id}`, {
                 method: 'PUT',
                 headers: {
                     'auth-token': localStorage.getItem('token')
@@ -45,7 +45,7 @@ const PostPage = () => {
         e.preventDefault();
         if (!user) return alert('Please login to comment');
         try {
-            await fetch(`http://localhost:5000/api/posts/comment/${id}`, {
+            await fetch(`${baseURL}/api/posts/comment/${id}`, {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',

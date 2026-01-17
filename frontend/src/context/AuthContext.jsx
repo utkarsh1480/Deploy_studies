@@ -2,6 +2,9 @@ import { createContext, useState, useEffect, useContext } from 'react';
 
 const AuthContext = createContext();
 
+// Base URL for API calls - change this for deployment
+export const baseURL = 'http://localhost:5000'; // Replace with your deployed backend URL, e.g., 'https://your-backend.herokuapp.com'
+
 export const useAuth = () => useContext(AuthContext);
 
 export const AuthProvider = ({ children }) => {
